@@ -1,0 +1,50 @@
+﻿@model Maths.Models.Solve
+@{
+    ViewBag.Title = "Solve";
+}
+
+<h2>Solve</h2>
+
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Solve", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.firstNumber, new { @class = "col-md-12 lab" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.firstNumber, new { @class = "form-control", @type = "number" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.secondNumber, new { @class = "col-md-12 lab" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.secondNumber, new { @class = "form-control", @type = "number" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-primary" value="SOLVE" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        <p style="color: red; font-size: 20px; font-style:italic">
+            @Html.DisplayFor(m => m.ErrorMessage, new { @class = "form-control error" })
+        </p>
+      <p style="color: deepskyblue; font-size: 30px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+          @Html.DisplayFor(m => m.SuccessMessage, new { @class = "form-control" })
+      </p>
+        
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
